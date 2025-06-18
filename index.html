@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docencia con Propósito | Mayra Katherine Salazar</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        /* ENCABEZADO CON IMAGEN MÁS PEQUEÑA Y COMPLETA */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('header-bg.jpeg') center/cover no-repeat;
+            background-size: 100% auto; /* Cambio clave para la imagen del encabezado */
+            min-height: 180px; /* Altura reducida */
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            padding: 1.5rem;
+        }
+        
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            margin-top: 0;
+        }
+        
+        nav {
+            background-color: var(--secondary-color);
+            padding: 0.7rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        nav li {
+            margin: 0 1rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.3rem 0.8rem;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+        
+        /* HERO - OCUPANDO TODO EL ANCHO */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('hero-bg.jpeg') center/cover no-repeat;
+            height: 45vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            margin: 0; /* Eliminamos el margen izquierdo */
+            width: 100%; /* Ocupa todo el ancho */
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 1.5rem;
+        }
+        
+        /* SECCIONES CON MENOS ESPACIO Y SEPARADORES */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+        }
+        
+        .section {
+            padding: 1.5rem 0; /* Espacio reducido entre secciones */
+            border-bottom: 2px solid #f0f0f0; /* Separador visual */
+            margin-bottom: 0.5rem; /* Menos espacio inferior */
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 1.2rem;
+            color: var(--primary-color);
+            font-size: 1.7rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed var(--secondary-color); /* Separador de título */
+        }
+        
+        /* Resto de estilos permanecen igual */
+        .profile-img {
+            width: 220px;
+            border-radius: 8px;
+            margin-right: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* ... (otros estilos se mantienen igual) ... */
+
+    </style>
+</head>
+<body>
+    <!-- Encabezado con imagen ajustada -->
+    <header>
+        <div class="header-content">
+            <h1>Docencia con Propósito</h1>
+            <p>La Experiencia Transformadora de Mayra Katherine Salazar</p>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#modelo">Modelo Pedagógico</a></li>
+            <li><a href="#perfil">Perfil Docente</a></li>
+            <li><a href="#relacion">Relación Humana</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Hero ocupando todo el ancho -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h2>Transformando la educación a distancia</h2>
+            <p>Una experiencia formativa basada en el enfoque pedagógico y humano de la profesora Mayra Katherine Salazar</p>
+        </div>
+    </section>
+    
+    <!-- Secciones con menos espacio y separadores -->
+    <section id="objetivo" class="section">
+        <div class="container">
+            <!-- ... (contenido igual) ... -->
+        </div>
+    </section>
+    
+    <!-- ... (resto de secciones igual) ... -->
+    
+    <footer>
+        <div class="container">
+            <p>Docencia con Propósito - Experiencia de Mayra Katherine Salazar</p>
+            <p>Universidad del Tolima - Red Interna de Saberes</p>
+            <p>© 2025 Todos los derechos reservados</p> <!-- Año actualizado -->
+        </div>
+    </footer>
+</body>
+</html>
