@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docencia con Propósito | Mayra Katherine Salazar</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0A3D62; /* Azul UT */
+            --secondary-color: #1E88E5; /* Azul claro UT */
+            --accent-color: #E53935; /* Rojo UT */
+            --light-color: #F5F5F5;
+            --dark-color: #263238;
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark-color);
+            line-height: 1.6;
+            background-color: var(--light-color);
+        }
+        
+        /* Hero unificado como fondo principal */
+        .hero-container {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('hero-bg.jpeg') center/cover no-repeat;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header-content {
+            padding: 2rem;
+            margin-top: auto;
+        }
+        
+        .header-content h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .header-content p {
+            font-size: 1.5rem;
+            margin-top: 0;
+            font-weight: 300;
+            font-family: 'Outfit', sans-serif;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+        
+        /* Navegación */
+        nav {
+            background-color: rgba(10, 61, 98, 0.8);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            font-family: 'Outfit', sans-serif;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        nav a:hover {
+            background-color: var(--accent-color);
+        }
+        
+        /* Texto hero inferior */
+        .hero-text {
+            padding: 2rem;
+            margin-top: auto;
+            margin-bottom: 5rem;
+        }
+        
+        .hero-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-text p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Contenido principal */
+        .main-content {
+            display: none;
+        }
+        
+        .main-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .section {
+            padding: 2rem 0;
+            border-bottom: 2px solid rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 700;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px dashed var(--secondary-color);
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .profile-container {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        
+        .profile-img {
+            width: 250px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .quote {
+            font-style: italic;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            color: #555;
+            font-size: 1.1rem;
+        }
+        
+        .highlight-box {
+            background-color: rgba(30, 136, 229, 0.1);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .strategy-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .btn-accent {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-accent:hover {
+            background-color: #c62828;
+        }
+        
+        @media (max-width: 768px) {
+            .profile-container {
+                flex-direction: column;
+            }
+            
+            .profile-img {
+                margin: 0 auto 1.5rem;
+                width: 200px;
+            }
+            
+            nav li {
+                margin: 0.3rem 0.5rem;
+            }
+            
+            .header-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header-content p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-text h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-text p {
+                font-size: 1.1rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero unificado como fondo principal -->
+    <div class="hero-container">
+        <!-- Encabezado -->
+        <div class="header-content">
+            <h1>Docencia con Propósito</h1>
+            <p>La Experiencia Transformadora de Mayra Katherine Salazar</p>
+        </div>
+        
+        <!-- Navegación -->
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showTab('inicio')">INICIO</a></li>
+                <li><a href="#" onclick="showTab('perfil')">PERFIL</a></li>
+                <li><a href="#" onclick="showTab('modelo')">MODELO PEDAGÓGICO</a></li>
+                <li><a href="#" onclick="showTab('relacion')">RELACIÓN HUMANA</a></li>
+                <li><a href="#" onclick="showTab('reflexiones')">REFLEXIONES</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Texto hero inferior -->
+        <div class="hero-text">
+            <h2>Transformando la educación a distancia</h2>
+            <p>Experiencia formativa basada en el enfoque pedagógico y humano</p>
+        </div>
+    </div>
+    
+    <!-- Contenido de pestañas -->
+    <main>
+        <!-- Pestaña INICIO -->
+        <div id="inicio" class="main-content active">
+            <div class="container">
+                <section class="section">
+                    <h2 class="section-title">OBJETIVO</h2>
+                    <div class="card">
+                        <p>Brindar a docentes y tutores de los Centros de Atención Tutorial de la Universidad del Tolima una experiencia formativa basada en el enfoque pedagógico y humano de la profesora Mayra Katherine Salazar, para fortalecer el rol del tutor en la modalidad a distancia mediante la apropiación de estrategias claras, flexibles y efectivas que respondan al contexto territorial.</p>
+                    </div>
+                </section>
+                
+                <section class="section">
+                    <h2 class="section-title">¿POR QUÉ NACE ESTA INICIATIVA?</h2>
+                    <div class="card">
+                        <p>La educación a distancia requiere más que contenidos y plataformas: necesita personas que comprendan al estudiante, acompañen sus procesos y transformen el aula en un espacio cercano, riguroso y significativo.</p>
+                        
+                        <p>Esta página presenta la experiencia de la profesora Mayra Katherine Salazar, tutora del programa de Administración Financiera del CAT Chaparral, quien desde 2019 ha demostrado cómo combinar claridad didáctica, empatía, planeación y adaptación para hacer de cada encuentro tutorial una oportunidad de crecimiento académico.</p>
+                        
+                        <div class="quote">
+                            "Historia, estrategias y reflexiones se comparten aquí como parte de la Red Interna de Saberes, con el propósito de inspirar y orientar a otros docentes que asumen el reto de formar desde la distancia."
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <!-- Pestaña PERFIL -->
+        <div id="perfil" class="main-content">
+            <div class="container">
+                <section class="section">
+                    <h2 class="section-title">MAYRA KATHERINE SALAZAR - TUTORA IDEAD CAT CHAPARRAL</h2>
+                    <div class="card">
+                        <div class="profile-container">
+                            <img src="perfil-mayra.jpeg" alt="Mayra Katherine Salazar" class="profile-img">
+                            <div>
+                                <p>La profesora Mayra Katherine Salazar es economista de formación y educadora por vocación. Su historia docente inicia en el año 2014, cuando, aún como estudiante de últimos semestres en la Universidad del Tolima, descubrió su habilidad natural para explicar temas complejos de manera sencilla, acompañando a sus compañeros con entusiasmo y claridad. Esta experiencia, sumada a la influencia positiva de un docente inspirador y una tradición familiar dedicada a la enseñanza, sembraron en ella la semilla de lo que más adelante se convertiría en una carrera apasionada por formar.</p>
+                                
+                                <p>Su camino profesional en la educación comenzó formalmente en el año 2015, en instituciones de educación básica primaria, y más adelante, en educación secundaria y media, orientando asignaturas de ciencias sociales y matemáticas. Esta experiencia integral en distintos niveles le permitió comprender la diversidad de ritmos, habilidades y contextos del estudiante colombiano, especialmente en regiones rurales.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="section">
+                    <h2 class="section-title">TRAYECTORIA EN EDUCACIÓN SUPERIOR</h2>
+                    <div class="card">
+                        <p>En el año 2019, dio el paso a la educación superior a distancia, vinculándose como tutora del Instituto de Educación a Distancia (IDEAD) de la Universidad del Tolima, en el Centro de Atención Tutorial de Chaparral. Su decisión no fue casual: reconoció en esta modalidad una oportunidad real de impacto social, al llevar educación universitaria a territorios históricamente excluidos del acceso presencial.</p>
+                        
+                        <p>Para ella, lo que más valor tiene del modelo a distancia no son las estructuras formales de encuentros o evaluaciones, sino el enfoque centrado en el estudiante. Un modelo que reconoce al aprendiz como protagonista activo del proceso educativo, mientras el docente actúa como orientador, guía y acompañante humano.</p>
+                    </div>
+                </section>
+                
+                <section class="section">
+                    <h2 class="section-title">ENFOQUE PEDAGÓGICO</h2>
+                    <div class="card">
+                        <p>Su enfoque pedagógico nace de convicciones profundas:</p>
+                        
+                        <div class="highlight-box">
+                            <ul>
+                                <li>Cree firmemente que educar es transformar vidas, especialmente en zonas apartadas como las del sur del Tolima.</li>
+                                <li>Considera que el docente no solo transmite contenidos, sino que construye vínculos, genera confianza, y crea oportunidades de desarrollo.</li>
+                                <li>Asume su rol con responsabilidad, preparación y empatía, haciendo de cada clase una experiencia cercana, estructurada y significativa.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="quote">
+                            "El modelo educativo me atrajo porque pone al estudiante en el centro. El conocimiento se descentraliza y se pone en manos de quien aprende. Eso es profundamente transformador."
+                        </div>
+                        
+                        <p>Este perfil no solo muestra el recorrido de una docente comprometida, sino también el fundamento humano y profesional de un modelo educativo que puede y debe ser replicado por otros docentes de la Red Interna de Saberes.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <!-- Pestaña MODELO PEDAGÓGICO -->
+        <div id="modelo" class="main-content">
+            <div class="container">
+                <section class="section">
+                    <h2 class="section-title">MODELO INTEGRADOR TRADICIONAL CONSTRUCTIVISTA</h2>
+                    <div class="card">
+                        <p>La enseñanza como construcción conjunta entre el saber, el contexto y el estudiante.</p>
+                        
+                        <p>La profesora Mayra Katherine Salazar aplica un modelo pedagógico ecléctico, que integra los aportes del modelo tradicional y del constructivismo. Su enfoque parte del reconocimiento de que no todos los grupos son iguales, y que enseñar requiere tanto una estructura sólida, como una gran capacidad de adaptación.</p>
+                        
+                        <p>En su práctica cotidiana, Mayra identifica dos momentos clave en sus tutorías:</p>
+                        
+                        <div class="highlight-box">
+                            <p><strong>1. Espacio magistral:</strong> Expone conceptos clave para asegurar que los estudiantes tengan un marco teórico claro. Esta parte responde a la dimensión tradicional del modelo, donde el rol del docente es activo y orientador del conocimiento.</p>
+                            
+                            <p><strong>2. Participación activa:</strong> Incorpora espacios para la discusión, las preguntas dirigidas y las actividades colaborativas. Aquí entra en juego el enfoque constructivista, en el que el estudiante asume un papel central en la construcción de su propio aprendizaje, a partir de sus saberes previos, de la reflexión, y del intercambio con sus pares.</p>
+                        </div>
+                        
+                        <div class="quote">
+                            "Hay momentos en los que el docente tiene un papel protagónico, pero son muchos más los momentos en los que el estudiante es el agente activo del proceso."
+                        </div>
+                        
+                        <p>Este modelo integrador le permite equilibrar el rigor académico con la flexibilidad necesaria para responder a las particularidades de los contextos rurales, los horarios laborales de los estudiantes, sus trayectorias educativas previas y sus necesidades específicas.</p>
+                    </div>
+                </section>
+                
+                <section class="section">
+                    <h2 class="section-title">ORGANIZACIÓN DEL TIEMPO Y EVALUACIÓN CONTINUA</h2>
+                    <div class="card">
+                        <p>Las fechas de entregas, talleres y actividades están claramente comunicadas desde el inicio del semestre, mediante el acuerdo pedagógico.</p>
+                        
+                        <div class="highlight-box">
+                            <ul>
+                                <li>Retroalimentación personalizada para mejorar errores y consolidar fortalezas</li>
+                                <li>Cada actividad tiene un propósito específico dentro de la tutoría</li>
+                                <li>Diseño de actividades que mantienen al estudiante activo, comprometido y motivado</li>
+                            </ul>
+                        </div>
+                        
+                        <h3>Principios que orientan su enfoque pedagógico:</h3>
+                        <ul class="convictions-list">
+                            <li>El aprendizaje debe ser significativo y contextualizado</li>
+                            <li>El acompañamiento debe ser constante y humano</li>
+                            <li>La evaluación debe reconocer no solo el resultado, sino también el proceso</li>
+                            <li>El aula, incluso a distancia, debe ser un espacio de diálogo, empatía y construcción colectiva</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section class="section">
+                    <h2 class="section-title">PLANEACIÓN Y PREPARACIÓN DE CLASES</h2>
+                    <div class="card">
+                        <p>Mayra desarrolla sus clases a partir de tres principios básicos:</p>
+                        
+                        <div class="highlight-box">
+                            <ul>
+                                <li>Objetivo claro</li>
+                                <li>Base teórica sólida</li>
+                                <li>Contextualización práctica</li>
+                            </ul>
+                        </div>
+                        
+                        <p>Su proceso de preparación incluye:</p>
+                        
+                        <ul>
+                            <li>Revisión de guías y microcurrículos, como marco orientador institucional.</li>
+                            <li>Búsqueda de fuentes adicionales (libros, artículos, videos), que enriquecen la clase más allá del mínimo obligatorio.</li>
+                            <li>Organización previa en la plataforma TU AULA, donde publica materiales con anticipación para fomentar el estudio autónomo.</li>
+                        </ul>
+                        
+                        <p>Ella diseña cada tutoría con una estructura bien pensada, pero con margen para la improvisación pedagógica: si el grupo lo requiere, adapta el ritmo, cambia las actividades o modifica la forma de explicar.</p>
+                        
+                        <div class="quote">
+                            "Aunque uno como docente puede tener muy clara la organización de la clase, en la práctica cada grupo es distinto, y eso hace necesario ajustar sobre la marcha."
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="section">
+                    <h2 class="section-title">ESTRATEGIAS DIDÁCTICAS ESPECÍFICAS</h2>
+                    <div class="card">
+                        <p>A continuación, algunas de las estrategias más destacadas utilizadas por la profesora Mayra en sus tutorías:</p>
+                        
+                        <img src="cuadro1.jpeg" alt="Estrategias didácticas" class="strategy-image">
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <!-- Pestaña RELACIÓN HUMANA -->
+        <div id="relacion" class="main-content">
+            <div class="container">
+                <section class="section">
+                    <h2 class="section-title">EDUCAR DESDE LA EMPATÍA, EVALUAR CON PROPÓSITO</h2>
+                    <div class="card">
+                        <h3>Relación Humana: Enseñar es Acompañar</h3>
+                        <p>Para la profesora Mayra Katherine Salazar, enseñar no es solo transmitir conocimiento, sino establecer vínculos humanos significativos. Su forma de tutoría está guiada por la empatía, la cercanía y el respeto profundo por las realidades del estudiante.</p>
+                        
+                        <div class="quote">
+                            "La verdadera educación ocurre cuando el estudiante se siente visto, escuchado y valorado como persona"
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="section">
+                    <h2 class="section-title">ESTRATEGIAS RELACIONALES DESTACADAS</h2>
+                    <div class="card">
+                        <div class="highlight-box">
+                            <ul>
+                                <li><strong>Canales de comunicación abiertos:</strong> WhatsApp, correo electrónico, llamadas y videollamadas para apoyo académico y personal</li>
+                                <li><strong>Conexión emocional:</strong> Llamar a cada estudiante por su nombre, conocer su contexto y realidad</li>
+                                <li><strong>Presencia afectiva:</strong> Espacios informales antes/después de clase para reforzar vínculos</li>
+                                <li><strong>Participación activa:</strong> Juegos, actividades lúdicas y estrategias motivadoras</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="section">
+                    <h2 class="section-title">EVALUACIÓN FORMATIVA: MÁS ALLÁ DE UNA NOTA</h2>
+                    <div class="card">
+                        <p>La evaluación, para la profesora Mayra, no es un acto punitivo ni una simple medición de resultados. Es un proceso integral que considera:</p>
+                        
+                        <img src="claves-enfoque.jpeg" alt="Claves del enfoque evaluativo" class="strategy-image">
+                        
+                        <h3>Dimensión Humana de la Evaluación</h3>
+                        <ul class="convictions-list">
+                            <li>Ajuste de expectativas sin perder exigencia</li>
+                            <li>Comprensión de contextos complejos (estudiantes trabajadores, zonas rurales)</li>
+                            <li>Retroalimentación como orientación, no solo corrección</li>
+                            <li>Valoración del esfuerzo y evolución personal</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <!-- Pestaña REFLEXIONES -->
+        <div id="reflexiones" class="main-content">
+            <div class="container">
+                <section class="section">
+                    <h2 class="section-title">REFLEXIONES PEDAGÓGICAS</h2>
+                    <div class="card">
+                        <p>La entrevista con la profesora Mayra Katherine Salazar nos deja más que una lista de buenas prácticas. Nos deja una visión viva de lo que significa enseñar con propósito en la educación a distancia:</p>
+                        
+                        <div class="highlight-box">
+                            <ul>
+                                <li>Planear con rigor</li>
+                                <li>Comunicar con empatía</li>
+                                <li>Evaluar con sentido</li>
+                                <li>Acompañar con humanidad</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="quote">
+                            "La evaluación no debe centrarse solo en si respondió bien o mal. También debe considerar cómo lo hizo, desde dónde lo hizo y cuánto avanzó."
+                        </div>
+                        
+                        <div class="quote" style="border-left-color: var(--accent-color);">
+                            "La evaluación no es una herramienta de castigo, sino una oportunidad de guía y mejora para cada estudiante, vista desde su realidad."
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="section">
+                    <h2 class="section-title" style="color: var(--accent-color);">Haz parte de la Red de Saberes</h2>
+                    <div class="card" style="text-align: center;">
+                        <h3 style="font-size: 1.8rem; color: var(--accent-color); margin-bottom: 1.5rem;">
+                            ¡Comparte tu experiencia!
+                        </h3>
+                        <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                            Desde la Red Interna de Saberes del CAT, queremos que esta página sea un punto de encuentro entre docentes comprometidos.
+                        </p>
+                        
+                        <div class="highlight-box" style="max-width: 600px; margin: 0 auto;">
+                            <p>Si eres tutor o docente del IDEAD:</p>
+                            <ul style="text-align: left;">
+                                <li>Anímate a contar tu historia</li>
+                                <li>Comparte tu saber</li>
+                                <li>Súmate a esta red de educadores</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="https://forms.gle/89VeoectduoDVe7P6" class="btn-accent">
+                            Participa aquí
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>Docencia con Propósito - Experiencia de Mayra Katherine Salazar</p>
+            <p>Universidad del Tolima - Red Interna de Saberes</p>
+            <p>© 2025 Todos los derechos reservados</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Función para mostrar la pestaña seleccionada
+        function showTab(tabId) {
+            // Oculta todos los contenidos
+            document.querySelectorAll('.main-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Muestra el contenido seleccionado
+            document.getElementById(tabId).classList.add('active');
+            
+            // Desplazamiento suave al principio del contenido
+            window.scrollTo({
+                top: document.querySelector('.hero-container').offsetHeight,
+                behavior: 'smooth'
+            });
+            
+            return false;
+        }
+        
+        // Mostrar la pestaña de inicio por defecto
+        document.addEventListener('DOMContentLoaded', function() {
+            showTab('inicio');
+        });
+    </script>
+</body>
+</html>
